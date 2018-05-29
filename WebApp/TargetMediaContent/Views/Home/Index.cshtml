@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form enctype="multipart/form-data" asp-controller="Home" method="post" asp-action="AddTMC">
+    <br>
+    <div>
+        <label for="StartDate">Date (DD.MM.YYYY)</label>
+        <br>
+        <input name="StartDate" size="11" /> —
+        <input name="EndDate" size="11" />
+    </div>
+    <br>
+    <div>
+        <label for="Gender">Gender (male/female)</label>
+        <br>
+        <input name="Gender" size="30" />
+    </div>
+    <br>
+    <div>
+        <label for="StartAge">Age</label>
+        <br>
+        <input name="StartAge" size="11" /> —
+        <input name="EndAge" size="11" />
+    </div>
+    <br>
+    <div>
+        <label for="Button">ButtonType</label>
+        <br>
+        <input name="Button" size="30" />
+    </div>
+    <br>
+    <div>
+        <label for="LikeMessage">ButtonLikeMessage</label>
+        <br>
+        <input name="LikeMessage" size="30" />
+    </div>
+    <br>
+    <div>
+        <label for="DislikeMessage">ButtonDisikeMessage</label>
+        <br>
+        <input name="DislikeMessage" size="30" />
+    </div>
+    <br>
+    <div>
+        <label for="Place">ButtonPlace (up/down)</label>
+        <br>
+        <input name="Place" size="30" />
+    </div>
+    <br>
+    <div>
+        <label for="Video">Upload Video</label>
+        <br>
+        <input name="Video" type="file">
+    </div>
+    <br>
+    <button type="submit">Add</button>
+</form>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+        asp-fallback-test="window.jQuery"
+        crossorigin="anonymous"
+        integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+</script>
+
+<script>
+    $("#testbutton").click(function () {
+        alert("Privet!");
+    });
+
+    $('#mvideo').on('ended', function () {
+        $("#mvideo").attr("src", "http://video.webmfiles.org/elephants-dream.webm");
+        $('#mvideo').get(0).play();
+    });
+</script>
+
