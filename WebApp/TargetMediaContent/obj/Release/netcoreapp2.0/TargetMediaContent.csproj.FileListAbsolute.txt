@@ -1,0 +1,12 @@
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\bin\Release\netcoreapp2.0\MediaContentHSE.deps.json
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\bin\Release\netcoreapp2.0\MediaContentHSE.runtimeconfig.json
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\bin\Release\netcoreapp2.0\MediaContentHSE.runtimeconfig.dev.json
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\bin\Release\netcoreapp2.0\MediaContentHSE.dll
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\bin\Release\netcoreapp2.0\MediaContentHSE.pdb
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\obj\Release\netcoreapp2.0\TargetMediaContent.csprojResolveAssemblyReference.cache
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\obj\Release\netcoreapp2.0\TargetMediaContent.csproj.CoreCompileInputs.cache
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\obj\Release\netcoreapp2.0\TargetMediaContent.AssemblyInfoInputs.cache
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\obj\Release\netcoreapp2.0\TargetMediaContent.AssemblyInfo.cs
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\obj\Release\netcoreapp2.0\MediaContentHSE.dll
+C:\Artemy\HSE\Project\may20\hb-hse-master\TMC\HSE_Project2018\WebApp\TargetMediaContent\obj\Release\netcoreapp2.0\MediaContentHSE.pdb

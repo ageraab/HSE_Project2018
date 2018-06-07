@@ -31,10 +31,9 @@ namespace MediaContentHSE.Controllers
             _signInManager = signInManager;
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string message = null)
         {
-            var TG = _context.TargetGroups.Last();
-            ViewData["TG"] = TG;
+            ViewData["Message"] = message;
             return View();
         }
 
@@ -62,6 +61,30 @@ namespace MediaContentHSE.Controllers
             string Gender, string StartAge, string EndAge,
             string Button, string LikeMessage, string DislikeMessage, string Place)
         {
+            try {
+                var stDate = DateTime.ParseExact(StartDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                var enDate = DateTime.ParseExact(EndDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            } catch (Exception e) {
+                return RedirectToAction("Index", new { message = "Incorrect date format (required DD.MM.YYYY)" });
+            }
+            if (Gender == null || StartAge == null || EndAge == null ||
+                Button == null || LikeMessage == null || Place == null) {
+                return RedirectToAction("Index", new { message = "Fill all fields" });
+            }
+            try
+            {
+                var stAge = Convert.ToInt32(StartAge, 10);
+                var enAge = Convert.ToInt32(EndAge, 10);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", new { message = "Incorrect age" });
+            }
+            if (Video == null)
+            {
+                return RedirectToAction("Index", new { message = "Upload the video" });
+            }
+
             TargetMediaContent tmc = new TargetMediaContent();
             tmc.TargetMediaContentId = Guid.NewGuid();
             tmc.StartDate = DateTime.ParseExact(StartDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
@@ -72,7 +95,7 @@ namespace MediaContentHSE.Controllers
             mc.MediaContentId = Guid.NewGuid();
             mc.FileName = Video.FileName + "_" + mc.MediaContentId;
             tmc.MediaContentId = mc.MediaContentId;
-            _context.Add(mc);
+
 
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=targetmediacontent;AccountKey=9j2qzQ0s+yq1K+GNVuHf1y6KN3hllqR7edNXX6Jw0kHzUrWVvioBEFAMvqEJEhDVnS3Fqtr8C3Ss3dyotEy7Iw==");
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
@@ -90,9 +113,22 @@ namespace MediaContentHSE.Controllers
                 blob.SetPropertiesAsync();
             }
 
+            TargetMediaContentInterface ti = new TargetMediaContentInterface();
+            ti.TargetMediaContentInterfaceId = Guid.NewGuid();
+            ti.Button = Button;
+            ti.Message = LikeMessage + "#" + DislikeMessage;
+            if ((Place == "up") || (Place == "Up"))
+            {
+                ti.Place = 1;
+            } else
+            {
+                ti.Place = 0;
+            }
+            tmc.TargetMediaContentInterfaceId = ti.TargetMediaContentInterfaceId;
+
             var existingTG = _context.TargetGroups.Where(g =>
-            g.StartAge == Convert.ToInt32(StartAge, 10) &&
-            g.EndAge == Convert.ToInt32(EndAge, 10) && g.Gender == Gender).FirstOrDefault();
+                g.StartAge == Convert.ToInt32(StartAge, 10) &&
+                g.EndAge == Convert.ToInt32(EndAge, 10) && g.Gender == Gender).FirstOrDefault();
             if (existingTG != null)
             {
                 tmc.TargetGroupId = existingTG.TargetGroupId;
@@ -109,18 +145,7 @@ namespace MediaContentHSE.Controllers
                 _context.Add(tg);
             }
 
-            TargetMediaContentInterface ti = new TargetMediaContentInterface();
-            ti.TargetMediaContentInterfaceId = Guid.NewGuid();
-            ti.Button = Button;
-            ti.Message = LikeMessage + "#" + DislikeMessage;
-            if ((Place == "up") || (Place == "Up"))
-            {
-                ti.Place = 1;
-            } else
-            {
-                ti.Place = 0;
-            }
-            tmc.TargetMediaContentInterfaceId = ti.TargetMediaContentInterfaceId;
+            _context.Add(mc);
             _context.Add(ti);
             _context.Add(tmc);
 
